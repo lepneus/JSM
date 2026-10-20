@@ -395,7 +395,21 @@
     .location-placeholder strong{font-size:16px}
     .parts-inner{display:grid;gap:24px;padding-block:42px}
   .parts-inner>.button{justify-self:start}
-    .parts-statement{font-size:18px}
+  .parts-section{position:relative;overflow:hidden}
+  .parts-section::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.24),transparent 48%,rgba(8,22,41,.06))}
+  .parts-inner{position:relative;z-index:1;flex-wrap:wrap}
+  .parts-details{width:100%;order:3;margin-top:4px}
+  .parts-list-label{margin:0 0 12px;color:#081629;font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+  .parts-details summary{display:inline-flex;align-items:center;gap:10px;min-height:42px;padding:0 18px;border:1px solid rgba(8,22,41,.2);border-radius:999px;color:#081629;background:rgba(255,255,255,.46);font-size:13px;font-weight:900;cursor:pointer;list-style:none}
+  .parts-details summary::-webkit-details-marker{display:none}
+  .parts-details summary::after{content:"+";font-size:20px;font-weight:500;line-height:1}
+  .parts-details[open] summary::after{content:"−"}
+  .parts-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 18px;margin:18px 0 0;padding:20px;list-style:none;border:1px solid rgba(8,22,41,.14);border-radius:18px;background:rgba(255,255,255,.64)}
+  .parts-list li{color:#142335;font-size:14px;font-weight:700;line-height:1.35;padding-left:16px;position:relative}
+  .parts-list li::before{content:"";width:6px;height:6px;position:absolute;left:0;top:.48em;border-radius:50%;background:#b51c24}
+  .parts-statement{font-size:18px}
+  @media(max-width:860px){.parts-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;padding:16px}.parts-list li{font-size:13px}.parts-details{margin-top:0}}
+  @media(max-width:430px){.parts-list{grid-template-columns:1fr}}
   }
   @media(max-width:860px){
     .benefits{grid-template-columns:repeat(2,minmax(0,1fr));}
@@ -414,6 +428,26 @@
   }
   @media(max-width:340px){.benefits,.services-grid{grid-template-columns:1fr;}}
 </style>
+  <style id="services-refinement">
+    .services-section .section-heading{align-items:end}
+    .services-section .section-heading h2{max-width:640px}
+    .services-section .section-heading p{font-size:16px}
+    .service-card{border-color:#d8e2ec;box-shadow:0 18px 42px rgba(8,22,41,.08)}
+    .service-card h3{letter-spacing:-.025em}
+    .service-link{letter-spacing:.01em}
+    .button-blue{background:linear-gradient(135deg,#081629,#294f7a);box-shadow:0 16px 34px rgba(8,22,41,.22)}
+    .button-blue:hover{background:linear-gradient(135deg,#294f7a,#081629)}
+    .service-heading>.icon,.benefits .icon{color:#294f7a;background:#fff7d8;border-color:#eadb91}
+    .service-card:hover .service-heading>.icon{background:#ffd600;color:#081629}
+    .section-heading h2 span{color:#294f7a}
+    .parts-section{background:linear-gradient(135deg,#fff7d8,#fff2b4)}
+    .parts-copy h2,.parts-statement{color:#081629}
+    .parts-details summary{background:#081629;color:#fff;border-color:#081629}
+    .parts-list{background:rgba(255,255,255,.78);border-color:#e4d27c}
+    .parts-list li::before{background:#294f7a}
+    .text-link,.phone-link{color:#294f7a}
+    @media(max-width:860px){.services-section .section-heading{align-items:start}.services-section .section-heading p{font-size:15px}}
+  </style>
 </head>
 <body>
 <!-- Adapted as a separate HTML from the user's Rota 239 layout. Original file preserved.
@@ -446,7 +480,7 @@ Location and contacts researched on 2026-10-19. Hero image is AI-generated and i
       <details class="header-menu" id="headerMenu">
         <summary class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span></summary>
         <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
-          <a href="#servicos">Serviços</a><a href="#pecas">Peças para caminhões</a><a href="#experiencia">A JS Mecânica</a><a href="#localizacao">Localização</a>
+          <a href="#servicos">Serviços</a><a href="#pecas">Ver peças</a><a href="#experiencia">A JS Mecânica</a><a href="#localizacao">Localização</a>
           <a class="button button-outline button-small" href="https://wa.me/5545999753823?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20um%20atendimento%20na%20JS%20Mec%C3%A2nica%20de%20Molas." target="_blank" rel="noopener noreferrer">Consultar atendimento <svg class="icon" aria-hidden="true"><use href="#arrow-up"></use></svg></a>
         </nav>
       </details>
@@ -519,6 +553,17 @@ Location and contacts researched on 2026-10-19. Hero image is AI-generated and i
         <p class="parts-detail">Consulte aplicação e disponibilidade com a equipe.</p>
       </div>
       <a class="button button-dark" href="https://wa.me/5545999753823?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20pe%C3%A7as%20para%20caminh%C3%A3o%20na%20JS%20Mec%C3%A2nica%20de%20Molas." target="_blank" rel="noopener noreferrer">Consultar peças <svg class="icon" aria-hidden="true"><use href="#arrow-up"></use></svg></a>
+      <div class="parts-details reveal">
+        <p class="parts-list-label">Peças disponíveis</p>
+        <ul class="parts-list">
+          <li>Cuíca de freio</li><li>Diafragma da cuíca</li><li>Molas do molejo</li>
+          <li>Pinos de centro</li><li>Catracas</li><li>Lonas de freio</li>
+          <li>Balanças</li><li>Pinos da balança</li><li>Pinos e buchas do tirante</li>
+          <li>Prisioneiros de roda</li><li>Retentor duplo</li><li>Retentor da carreta</li>
+          <li>Roletes do patim de freio</li><li>Trava pingo d’água</li><li>Engate rápido de aço</li>
+          <li>Engraxadeiras</li><li>Parafusos e arruelas</li>
+        </ul>
+      </div>
     </div>
   </section>
   <section class="experience-section" id="experiencia" aria-labelledby="experienceTitle">
@@ -545,7 +590,11 @@ Location and contacts researched on 2026-10-19. Hero image is AI-generated and i
       <div class="location-actions"><a class="button button-dark" href="https://www.google.com/maps/dir/?api=1&amp;destination=Posto%20de%20Molas%20JS%20Mec%C3%A2nica%20de%20Molas%20Rodovia%20Vacilio%20Boiko%20287%20Nova%20Aurora%20PR" target="_blank" rel="noopener noreferrer">Traçar minha rota <svg class="icon" aria-hidden="true"><use href="#arrow-up"></use></svg></a><a class="text-link" href="https://wa.me/5545999753823?text=Ol%C3%A1%21%20Gostaria%20de%20consultar%20um%20atendimento%20na%20JS%20Mec%C3%A2nica%20de%20Molas." target="_blank" rel="noopener noreferrer">Falar com a JS</a></div>
     </div>
     <div class="route-art reveal">
-      <div class="location-placeholder" role="img" aria-label="Imagem do local ainda não enviada"><svg class="icon" aria-hidden="true"><use href="#pin"></use></svg><strong>FALTA A IMAGEM</strong></div>
+      <div class="route-art route-visual reveal" role="img" aria-label="Arte visual da localização da JS Mecânica de Molas em Nova Aurora">
+        <span class="map-city">NOVA AURORA / PR</span><span class="map-road">RODOVIA VACILIO BOIKO</span>
+        <div class="map-pin"><svg class="icon" aria-hidden="true"><use href="#pin"></use></svg><span>JS Mecânica<br><small>Chácara 3, Lote 1</small></span></div>
+        <span class="map-direction">SAÍDA PARA IRACEMA DO OESTE ↗</span>
+      </div>
       <div class="map-caption"><svg class="icon" aria-hidden="true"><use href="#pin"></use></svg><div><strong>JS Mecânica de Molas</strong><small>Nova Aurora / PR · Saída para Iracema do Oeste</small></div><a aria-label="Abrir localização no Google Maps" href="https://www.google.com/maps/search/?api=1&amp;query=Posto%20de%20Molas%20JS%20Mec%C3%A2nica%20de%20Molas%20Rodovia%20Vacilio%20Boiko%20287%20Nova%20Aurora%20PR" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#arrow-up"></use></svg></a></div>
     </div>
   </section>
@@ -744,6 +793,17 @@ Location and contacts researched on 2026-10-19. Hero image is AI-generated and i
       updateMotion();
       root.classList.add('motion-ready');
     })();
+  </script>
+  <script>
+    const professionalServiceCopy={
+      'Molejo e feixes de molas':'Inspeção, recuperação e substituição de feixes e componentes para manter a suspensão da linha pesada em segurança.',
+      'Suspensão pesada':'Diagnóstico dos componentes da suspensão para melhorar a estabilidade, o conforto e a segurança do caminhão.',
+      'Buchas, pinos e suportes':'Verificação de folgas, desgaste e fixações para recuperar a precisão e o desempenho do conjunto.',
+      'Freios':'Revisão dos componentes do sistema de freios para identificar desgastes e orientar a manutenção necessária.',
+      'Quinta roda':'Avaliação do conjunto de acoplamento e dos componentes compatíveis com o modelo do seu veículo pesado.',
+      'Mecânica pesada':'Manutenção para caminhões e carretas, com orientação da equipe conforme o diagnóstico do veículo.'
+    };
+    document.querySelectorAll('.service-card').forEach(card=>{const title=card.querySelector('h3');const text=card.querySelector('p');if(title&&text&&professionalServiceCopy[title.textContent.trim()])text.textContent=professionalServiceCopy[title.textContent.trim()];});
   </script>
 </body>
 </html>
